@@ -1,0 +1,137 @@
+body {
+  background-color: #f9f7f1;
+  font-family: 'Georgia', serif;
+  color: #4a503d;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.profile-container {
+  background: #fff8ec;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 20px rgba(99, 98, 81, 0.2);
+  width: 350px;
+}
+
+h1 {
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #536142;
+  text-align: center;
+}
+
+.profile-pic-wrapper {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#profile-pic-preview {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #a0b38c;
+  box-shadow: 0 0 8px #a0b38c;
+  margin-bottom: 10px;
+}
+
+.custom-file-upload {
+  margin-top: 8px;
+}
+
+.file-label {
+  display: inline-block;
+  background-color: #7b8f67;
+  color: #f0efe8;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  user-select: none;
+  transition: background-color 0.3s ease;
+}
+
+.file-label:hover {
+  background-color: #5b6b44;
+}
+
+#profile-pic-input {
+  display: none;
+}
+
+#file-name {
+  margin-top: 6px;
+  font-style: italic;
+  color: #7c7f65;
+  font-size: 0.9rem;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #536142;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 90%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  border: 2px solid #a0b38c;
+  font-size: 1rem;
+  font-family: 'Georgia', serif;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+  outline: none;
+  border-color: #5b6b44;
+  background-color: #e6ebda;
+}
+
+.save-btn {
+  margin-top: 20px;
+  width: 100%;
+  background: #7b8f67;
+  color: #f0efe8;
+  font-weight: 700;
+  border: none;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 8px #a0b38c;
+  transition: background-color 0.3s ease;
+  font-family: 'Georgia', serif;
+}
+
+.save-btn:hover {
+  background: #5b6b44;
+}
+
+.back-button {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  color: #2a9d8f;
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.back-button:hover {
+  color: #20705f;
+}
+
+#save-message {
+  margin-top: 12px;
+  color: #3a6a53;
+  font-weight: 700;
+  text-align: center;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Register</title>
+        <link rel="stylesheet" href="/css/register.css">
+    </head>
+    <body>
+        <div class="register" id="registerForm">
+				<h1>Register</h1>
+				<h3>Welcome to my Website</h3>
+
+				<form action="/register>" class="formGrid" method="post">
+					<div class="inputContainer">
+						<input required type="text" name="username" id="username" placeholder="Username">
+						<input required type="password" name="password" id="password" placeholder="Password">
+						<input required type="password" name="confirmpassword" id="confirm-password" placeholder="Confirm Password">
+                        <input require type="email" name="email" id="email" placeholder="Email">
+						<span class="error-message" id="passwordError"></span>
+
+                        <p style="text-align: center;">
+                            <label class="label-marketing">
+                                <input required type="radio" class="location-opt" value="marketing" name="location">
+                                Marketing
+                            </label>
+
+                            <label class="label-umall">
+                                <input required type="radio" class="location-opt" value="umall" name="location">
+                                UMall
+                            </label>
+                        </p>
+                       
+					</div>
+					    Already have an account? Login
+						<a href="/html/login.html">here</a>
+					<button id="register-button" type="submit">Register</button>
+				</form>
+		</div>
+        
+        <script src="/js/background-hover.js"></script>
+        <script src="/js/register.js"></script>
+    </body>
+</html>
+
