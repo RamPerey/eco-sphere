@@ -1,25 +1,32 @@
-function toggleForms() {
-    // const login = document.getElementById("loginForm");
-    // const register = document.getElementById("registerForm");
-    //     login.classList.toggle("hidden");
-    //     register.classList.toggle("hidden");
-}
-
-document.getElementById('login-button').addEventListener('click', function (e) {
+const loginForm = document.getElementById('login-form');
+loginForm.onsubmit = (e) => {
     e.preventDefault();
 
-    /* Inconsistent naming format haha */
-    const username = document.getElementById('username').value.trim();
-    const password = document.getElementById('password').value.trim();
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-    if (username === '' || password === '') {
-        alert("Please fill the form.");
-        return;
+    const data = {
+        username: username,
+        password: password,
     }
 
-    if (username != storedUsername && password != storedPassword) {
-        alert('Invalid Password or Username.');
-    } else {
-        window.location.href = 'index.html';
+    const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
     }
-});
+
+    fetch('/login', options)
+        .then(res => res.json())
+        .then(data => { 
+            console.log(data);
+                
+            if (!data['success']) {
+                document.getElementById('message').innerHTML = data['error'];
+                return;
+            }
+
+            sessionStorage.setItem('username', data['username']);                
+            window.location.href = '/';
+        });
+}

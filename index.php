@@ -17,6 +17,24 @@
         }
     });
 
+    // Authentications
+    $router->add('/login', function () use ($db) {
+        $data = get_json_input();
+        
+        $result = $db->verify_password($data['username'], $data['password']);
+        if (!$result['success']) {
+            echo json_encode($result);
+            exit();
+        }
+
+        $user_id = $db->get_user_id($data['username']);
+        $user_id = $user_id['id'];
+
+        $_SESSION['username'] = $data['username'];
+        $_SESSION['user_id'] = $user_id;
+        echo json_encode(['success' => true, 'username' => $data['username']]);
+    });
+
     $router->add('/register', function () use ($db) {
         $data = get_json_input();
 

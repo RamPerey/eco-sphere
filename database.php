@@ -66,7 +66,7 @@
             
             $stmt = $this->db->prepare('
                 INSERT INTO users (username, password, email, profile_image, created_at)
-                 VALUES (:username, :password, :email, :profile_image, :created_at)');
+                 VALUES (:username, :password, :email, :profile_image, :created_at  )');
 
             return $stmt->execute([
                 'username' => $username, 

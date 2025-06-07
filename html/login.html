@@ -105,6 +105,16 @@
                 font-weight: bold;
             }
 
+            #message {
+                height: 1rem;
+                
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                
+                color: red;
+            }
+
             @media (max-width: 480px) {
                 .login {
                     padding: 1.5rem;
@@ -128,11 +138,14 @@
 				<h1>Login</h1>
 				<h3>Welcome to my Website</h3>
 
-				<form action="/login" class="formGrid">
+				<form id="login-form" class="formGrid">
 					<div class="inputContainer">
 						<input type="text" name="username" id="username" placeholder="Username">
 						<input type="password" name="password" id="password" placeholder="Password">
 					</div>
+
+                        <span id="message"></span>
+
 					    Don't have an account? Register
 						<a href="/html/register.html">here</a>
 					<button id="login-button">Login</button>
