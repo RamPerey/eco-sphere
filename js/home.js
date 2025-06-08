@@ -1,12 +1,13 @@
 const postButton = document.getElementById('post-button');
 const photoUploadButton = document.getElementById('photo-upload');
 
+let completed = 0;
+let postCount = 0;
 let postImages = [];
 
 loadFeed();
 postButton.onclick = createPost;
 photoUploadButton.onchange = uploadImage;
-
 
 function loadFeed() {
     fetch('/load-feed')
@@ -69,12 +70,14 @@ function createPost() {
                 return;
             }
 
+            postData['post_id'] = data['post_id'];
             displayPost(postData);
         });
 
     caption.value = '';
     category.value = 'general';
     imagePreview.innerHTML = '';
+    postImages = [];
 }
 
 function displayPost(postData) {
@@ -102,13 +105,69 @@ function displayPost(postData) {
         imagesContainer.appendChild(imageDOM);
     });
 
-    statusButton.textContent = postData['complete'] === 'T' ? 'Undo' : 'Complete';
+    completed = postData['completed'] === 'T' ? completed + 1 : completed;
+    console.log(completed);
+    statusButton.textContent = postData['completed'] === 'T' ? 'Undo' : 'Complete';
     statusButton.onclick = () => {
-        postData['complete'] = postData['complete'] === 'T' ? 'F' : 'T'; // Toggle status
-        statusButton.textContent = postData['complete'] === 'T' ? 'Undo' : 'Complete';
+        const data = {
+            post_id: postData['post_id']
+        }
+        
+        const options = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }
+
+        fetch('/toggle-status', options)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (!data['success']) {
+                    return;
+                }
+
+                statusButton.textContent = data['status'] === 'T' ? 'Undo' : 'Complete';
+                completed = data['status'] === 'T' ? completed + 1 : completed - 1;
+                updateProgressBar();
+            });
     }
 
-    deleteButton.onclick = () => {
-        postDOM.remove();
-    }        
+    deleteButton.onclick = () => deletePost(postData, postDOM);
+
+    postCount++;
+    updateProgressBar();
+}
+
+function deletePost(postData, postDOM) {
+    const data = {
+        post_id: postData['post_id']
+    }
+    
+    const options = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    }
+
+    fetch('delete-post', options)
+        .then(res => res.json())
+        .then(data => {
+            if (!data['success']) {
+                return;
+            }
+
+            postDOM.remove();
+        });
+}
+
+function updateProgressBar() {
+    const progressBar = document.getElementById('progress-bar');
+    const progressLabel = document.getElementById('progress-label');
+
+    let progress = ((completed / postCount) * 100).toFixed(2);
+    console.log(progress);
+
+    progressBar.style.width = progress + '%';
+    progressLabel.textContent = progress + '%';
 }

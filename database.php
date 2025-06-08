@@ -54,6 +54,13 @@
             return ['success' => true];
         }
 
+        public function get_post_status($post_id) {
+            $stmt = $this->db->prepare('SELECT completed FROM posts WHERE id = :post_id');
+            $stmt->execute(['post_id' => $post_id]);
+
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
         // User Management
         public function get_user_data($user_id) {
             $stmt = $this->db->prepare('SELECT username, email, profile_image FROM users WHERE id = :user_id');
@@ -72,7 +79,6 @@
 
             return $stmt->rowCount();
         }
-
 
         public function insert_user($username, $password, $confirm, $email) {
             if (!(strlen($username) > 0 && strlen($password) > 0)) {
@@ -97,11 +103,10 @@
             ]);
         }
 
-        // Post management
-                // Content Management
+        // Content Management
         public function get_feed() {
             $stmt = $this->db->prepare('
-                SELECT id AS post_id, user_id, caption, images 
+                SELECT id AS post_id, user_id, caption, images, category, completed
                 FROM posts WHERE user_id = :user_id'
             );
             $stmt->execute(['user_id' => $_SESSION['user_id']]);
@@ -109,16 +114,17 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function create_post($caption, $images) {
+        public function create_post($caption, $images, $category) {
             $stmt = $this->db->prepare('
-                INSERT INTO posts (user_id, caption, images)
-                VALUES (:user_id, :caption, :images)'
+                INSERT INTO posts (user_id, caption, images, category)
+                VALUES (:user_id, :caption, :images, :category)'
             );
 
             $stmt->execute([
                 'user_id' => $_SESSION['user_id'],
                 'caption' => $caption,
-                'images' => json_encode($images)
+                'images' => json_encode($images),
+                'category' => $category
             ]);
 
             if ($stmt->rowCount() == 0) {
@@ -126,6 +132,31 @@
             }
             
             return ['changes' => $stmt->rowCount(), 'post_id' => $this->db->lastInsertID()];
+        }
+
+        public function delete_post($post_id) {
+            $stmt = $this->db->prepare('DELETE FROM posts WHERE id = :post_id');
+            $stmt->execute(['post_id' => $post_id]);
+
+            return $stmt->rowCount();
+        }
+
+        public function toggle_status($post_id) {
+            $result = $this->get_post_status($post_id);
+            if ($result == false) {
+                return 0; // Indicates failure
+            }
+
+            $status = $result['completed'] == 'T' ? 'F' : 'T';;
+
+            $stmt = $this->db->prepare('
+                UPDATE posts 
+                SET completed = :status
+                WHERE id = :post_id'
+            );
+            $stmt->execute(['status' => $status, 'post_id' => $post_id]);
+
+            return ['changes' => $stmt->rowCount(), 'status' => $status];
         }
 
     }

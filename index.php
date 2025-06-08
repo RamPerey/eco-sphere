@@ -77,11 +77,16 @@
         echo json_encode(['success' => true]);
     });
 
-    // Post management
+    // Content Management
+    $router->add('/load-feed', function () use ($db) {
+        $result = $db->get_feed();
+        echo json_encode(['result' => $result]);
+    });
+    
     $router->add('/create-post', function () use ($db) {
         $data = get_json_input();
 
-        $result = $db->create_post($data['caption'], $data['images']);
+        $result = $db->create_post($data['caption'], $data['images'], $data['category']);
         if ($result['changes'] == 0) {
             echo json_encode(['success' => false, 'error' => 'Unable to createa post']);
         }
@@ -89,12 +94,28 @@
         echo json_encode(['success' => true, 'post_id' => $result['post_id']]);
     });
 
-    // Content Management
-    $router->add('/load-feed', function () use ($db) {
-        $result = $db->get_feed();
-        echo json_encode(['result' => $result]);
+    $router->add('/delete-post', function () use ($db) {
+        $data = get_json_input();
+
+        $result = $db->delete_post($data['post_id']);
+        if ($result == 0) {
+            echo json_encode(['success' => false]);
+        }
+
+        echo json_encode(['success' => true]);
     });
 
+    $router->add('/toggle-status', function () use ($db) {
+        $data = get_json_input();
+
+        $result = $db->toggle_status($data['post_id']);
+        if ($result['changes'] == 0) {
+            echo json_encode(['success' => false]);
+            exit();
+        }
+
+        echo json_encode(['success' => true, 'status' => $result['status']]);
+    });
 
     // For getting data sent from fetch
     function get_json_input() {

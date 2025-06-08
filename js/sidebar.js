@@ -1,14 +1,9 @@
-function loadProfile() {
-    const profile = JSON.parse(localStorage.getItem('ecoProfile')) || {
-        name: "Your Name",
-        email: "email@here.com",
-        picDataUrl: "default-profile.png",
-        progress: 0
-    };
+loadProfile();
 
-    profileName.textContent = profile.name;
-    profileEmail.textContent = profile.email;
-    updateProgressBar(profile.progress || 0);
+function loadProfile() {
+    const profileName = document.getElementById('profile-name');
+    const profileEmail = document.getElementById('profile-email');
+    const profilePic = document.getElementById('profile-pic');
 
     // Load user profile image
     fetch('/load-user-data')
@@ -18,5 +13,9 @@ function loadProfile() {
             const userData = data['user_data'];
 
             profilePic.src = `${userData['profile_image']}`;
+
+            profileName.textContent = userData['username'];
+            profileEmail.textContent = userData['email'];
+            // updateProgressBar(profile.progress || 0);
         });
 }

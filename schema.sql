@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS posts (
     user_id  INT NOT NULL,
     caption TEXT,
     images LONGTEXT,
+    category TEXT NOT NULL,
     completed ENUM('T', 'F') DEFAULT 'F',
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
