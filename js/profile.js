@@ -37,7 +37,7 @@ form.addEventListener('submit', function (e) {
       localStorage.setItem('ecoProfile', JSON.stringify(profileData));
       document.getElementById('save-message').textContent = "Profile saved! Redirecting...";
       setTimeout(() => {
-        window.location.href = 'index.html';
+        window.location.href = '/';
       }, 1000);
     };
     reader.readAsDataURL(picFile);
@@ -46,7 +46,7 @@ form.addEventListener('submit', function (e) {
     localStorage.setItem('ecoProfile', JSON.stringify(profileData));
     document.getElementById('save-message').textContent = "Profile saved! Redirecting...";
     setTimeout(() => {
-      window.location.href = 'index.html';
+      window.location.href = '/';
     }, 1000);
   }
 });
