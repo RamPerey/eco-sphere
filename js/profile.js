@@ -63,7 +63,7 @@ form.addEventListener('submit', function (e) {
             return;
           }
           
-          // Display message :DDDDDDDd
+          // Display message :DDDDDDD
           document.getElementById('save-message').textContent = "Profile saved! Redirecting...";
           setTimeout(() => {
             window.location.href = '/';

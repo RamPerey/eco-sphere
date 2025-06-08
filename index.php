@@ -35,6 +35,13 @@
         echo json_encode(['success' => true, 'username' => $data['username']]);
     });
 
+        $router->add('/logout', function () {
+        unset($_SESSION['username']);
+        unset($_SESSION['user_id']);
+
+        echo json_encode(['success' => true, 'message' => 'logout successful']);
+    });
+
     $router->add('/register', function () use ($db) {
         $data = get_json_input();
 
