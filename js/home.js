@@ -5,12 +5,12 @@ let completed = 0;
 let postCount = 0;
 let postImages = [];
 
-loadFeed();
+loadTask();
 postButton.onclick = createPost;
 photoUploadButton.onchange = uploadImage;
 
-function loadFeed() {
-    fetch('/load-feed')
+function loadTask() {
+    fetch('/load-task')
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -126,6 +126,8 @@ function displayPost(postData) {
                 if (!data['success']) {
                     return;
                 }
+                
+                postData['completed'] = data['status'];
 
                 statusButton.textContent = data['status'] === 'T' ? 'Undo' : 'Complete';
                 completed = data['status'] === 'T' ? completed + 1 : completed - 1;
@@ -157,7 +159,10 @@ function deletePost(postData, postDOM) {
                 return;
             }
 
-            completed = postData['completed'] === 'T' ? completed + 1 : completed - 1;
+            completed = postData['completed'] === 'T' ? completed - 1 >= 0 ? completed - 1: completed : completed ;
+            postCount = postCount - 1 >= 0 ? postCount - 1 : postCount;
+            console.log(completed);
+            console.log(postCount);
             updateProgressBar();
             postDOM.remove();
         });
@@ -166,8 +171,16 @@ function deletePost(postData, postDOM) {
 function updateProgressBar() {
     const progressBar = document.getElementById('progress-bar');
     const progressLabel = document.getElementById('progress-label');
+    
+    let progress = 0;
+    if (completed === 0 && postCount === 0) {
+        progress = 0;
+    }
+    else {
+        progress = ((completed / postCount) * 100).toFixed(2);
+    }
 
-    let progress = ((completed / postCount) * 100).toFixed(2);
+    progress = progress == 0 ? Math.trunc(progress) : progress;
     console.log(progress);
 
     progressBar.style.width = progress + '%';

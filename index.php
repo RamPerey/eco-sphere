@@ -78,7 +78,7 @@
     });
 
     // Content Management
-    $router->add('/load-feed', function () use ($db) {
+    $router->add('/load-task', function () use ($db) {
         $result = $db->get_feed();
         echo json_encode(['result' => $result]);
     });
