@@ -55,6 +55,25 @@
         }
 
         // User Management
+        public function get_user_data($user_id) {
+            $stmt = $this->db->prepare('SELECT username, email, profile_image FROM users WHERE id = :user_id');
+            $stmt->execute(['user_id' => $user_id]);
+            
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        }
+
+        public function update_profile_image($profile_image) {
+            $stmt = $this->db->prepare('
+                UPDATE users 
+                SET profile_image = :profile_image 
+                WHERE id = :user_id'
+            );
+            $stmt->execute(['profile_image' => $profile_image, 'user_id' => $_SESSION['user_id']]);
+
+            return $stmt->rowCount();
+        }
+
+
         public function insert_user($username, $password, $confirm, $email) {
             if (!(strlen($username) > 0 && strlen($password) > 0)) {
                 return ['error' => 'Empty username or password field'];

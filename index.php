@@ -57,7 +57,27 @@
 
         echo json_encode(['success' => true]);
     });
-    
+
+    // User Management
+    $router->add('/load-user-data', function () use ($db) {
+        $result = $db->get_user_data($_SESSION['user_id']);
+
+        echo json_encode(['success' => true, 'user_data' => $result]);
+    });
+
+    $router->add('/update-user-data', function () use ($db) {
+        $data = get_json_input();
+        
+        $result = $db->update_profile_image($data['profile_image']);
+        if ($result == 0) {
+            echo json_encode(['success' => false]);
+            exit();
+        }
+
+        echo json_encode(['success' => true]);
+    });
+
+
     // For getting data sent from fetch
     function get_json_input() {
         $input = file_get_contents('php://input');

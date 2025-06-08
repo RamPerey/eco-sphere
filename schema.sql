@@ -11,3 +11,11 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TEXT NOT NULL 
 );
 
+CREATE TABLE IF NOT EXISTS posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id  INT NOT NULL,
+    caption TEXT,
+    images LONGTEXT,
+    completed ENUM('T', 'F') DEFAULT 'T',
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
