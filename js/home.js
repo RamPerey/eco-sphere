@@ -157,6 +157,8 @@ function deletePost(postData, postDOM) {
                 return;
             }
 
+            completed = postData['completed'] === 'T' ? completed + 1 : completed - 1;
+            updateProgressBar();
             postDOM.remove();
         });
 }
