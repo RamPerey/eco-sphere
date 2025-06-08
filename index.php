@@ -77,6 +77,24 @@
         echo json_encode(['success' => true]);
     });
 
+    // Post management
+    $router->add('/create-post', function () use ($db) {
+        $data = get_json_input();
+
+        $result = $db->create_post($data['caption'], $data['images']);
+        if ($result['changes'] == 0) {
+            echo json_encode(['success' => false, 'error' => 'Unable to createa post']);
+        }
+
+        echo json_encode(['success' => true, 'post_id' => $result['post_id']]);
+    });
+
+    // Content Management
+    $router->add('/load-feed', function () use ($db) {
+        $result = $db->get_feed();
+        echo json_encode(['result' => $result]);
+    });
+
 
     // For getting data sent from fetch
     function get_json_input() {

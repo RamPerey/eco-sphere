@@ -85,7 +85,8 @@
             
             $stmt = $this->db->prepare('
                 INSERT INTO users (username, password, email, profile_image, created_at)
-                 VALUES (:username, :password, :email, :profile_image, :created_at  )');
+                 VALUES (:username, :password, :email, :profile_image, :created_at  )'
+            );
 
             return $stmt->execute([
                 'username' => $username, 
@@ -95,5 +96,37 @@
                 'created_at' => date('Y F j \a\t g:i A')
             ]);
         }
+
+        // Post management
+                // Content Management
+        public function get_feed() {
+            $stmt = $this->db->prepare('
+                SELECT id AS post_id, user_id, caption, images 
+                FROM posts WHERE user_id = :user_id'
+            );
+            $stmt->execute(['user_id' => $_SESSION['user_id']]);
+            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        public function create_post($caption, $images) {
+            $stmt = $this->db->prepare('
+                INSERT INTO posts (user_id, caption, images)
+                VALUES (:user_id, :caption, :images)'
+            );
+
+            $stmt->execute([
+                'user_id' => $_SESSION['user_id'],
+                'caption' => $caption,
+                'images' => json_encode($images)
+            ]);
+
+            if ($stmt->rowCount() == 0) {
+                return ['changes' => $changes];
+            }
+            
+            return ['changes' => $stmt->rowCount(), 'post_id' => $this->db->lastInsertID()];
+        }
+
     }
 ?>
