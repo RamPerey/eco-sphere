@@ -85,6 +85,11 @@
     });
 
     // Content Management
+    $router->add('/load-feed', function () use ($db) {
+        $result = $db->get_newsfeed();
+        echo json_encode(['result' => $result]);
+    });
+
     $router->add('/load-task', function () use ($db) {
         $result = $db->get_feed();
         echo json_encode(['result' => $result]);

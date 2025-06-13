@@ -104,6 +104,17 @@
         }
 
         // Content Management
+        public function get_newsfeed() {
+            $stmt = $this->db->prepare('
+                SELECT username, caption, category, images
+                FROM posts
+                JOIN users ON posts.user_id = users.id'
+            );
+            $stmt->execute();
+            
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
         public function get_feed() {
             $stmt = $this->db->prepare('
                 SELECT id AS post_id, user_id, caption, images, category, completed

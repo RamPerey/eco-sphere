@@ -14,7 +14,7 @@ function loadTask() {
         .then(res => res.json())
         .then(data => {
             console.log(data);
-            
+             
             const posts = data['result'];
             for (let postData of posts) {
                 postData['images'] = JSON.parse(postData['images']);
