@@ -84,6 +84,7 @@ function displayPost(postData) {
     const postsContainer = document.getElementById('posts-container');
 
     const postDOM = document.createElement('div');
+    
     postDOM.classList.add('post');
     postDOM.innerHTML = `<p class="task-text">${postData['caption']}</p>
                          <span class="category-label category-${postData['category']}">${postData['category']}</span>
