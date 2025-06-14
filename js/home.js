@@ -42,25 +42,56 @@ function uploadImage(e) {
     reader.readAsDataURL(file);
 }
 
+const ecoTip = document.getElementById('eco-tip');
+
+function showEcoTip(category) {
+    const tips = {
+        general: "MAHIYA MGA DI TUMUTULONG SA GROUP 1 JAN!",
+        biodegradable: "tubero ka ba? plumbing naman... Garbage separation is important!",
+        specialWaste: "Handa akong maging siomai kapag tinotoyo ka... Please our environment clean!",
+        residual: "BE A RESPONSIBLE STUDENT. KALAT MO, TAPON MO!"
+    };
+    ecoTip.textContent = tips[category] || '';
+}
+
+
 function createPost() {
     const caption = document.getElementById('task-text');
     const category = document.getElementById('category-select');
     const imagePreview = document.getElementById('image-preview');
-    console.log(postImages);
+    const files = Array.from(photoUploadButton.files); // Ensure this uses the right input
+
+    const text = caption.value.trim();
+    if (!text) {
+        alert('Please enter the task description.');
+        return;
+    }
+
+    if (files.length < 1) {
+        alert('BAWAL MADUGA TINGIN KUNG NAGLILINIS TALAGA.');
+        return;
+    }
+
+    if (files.length > 5) {
+        alert('You can upload a maximum of 5 photos.');
+        return;
+    }
+
+    // Show eco tip based on category
+    showEcoTip(category.value);
 
     const postData = {
-        caption: caption.value,
+        caption: text,
         category: category.value,
         images: postImages,
         completed: 'F'
-    }
-    
-    const data = postData;
+    };
+
     const options = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    }
+        body: JSON.stringify(postData)
+    };
 
     fetch('/create-post', options)
         .then(res => res.json())
@@ -74,11 +105,14 @@ function createPost() {
             displayPost(postData);
         });
 
+    // Reset form
     caption.value = '';
     category.value = 'general';
     imagePreview.innerHTML = '';
     postImages = [];
+    photoUploadButton.value = ''; // reset file input
 }
+
 
 function displayPost(postData) {
     const postsContainer = document.getElementById('posts-container');
@@ -153,7 +187,7 @@ function deletePost(postData, postDOM) {
         body: JSON.stringify(data)
     }
 
-    fetch('delete-post', options)
+    fetch('/delete-post', options)
         .then(res => res.json())
         .then(data => {
             if (!data['success']) {
