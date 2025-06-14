@@ -75,7 +75,7 @@
     $router->add('/update-user-data', function () use ($db) {
         $data = get_json_input();
         
-        $result = $db->update_profile_image($data['profile_image']);
+        $result = $db->update_user_data($data['username'], $data['email'], $data['profile_image']);
         if ($result == 0) {
             echo json_encode(['success' => false]);
             exit();
