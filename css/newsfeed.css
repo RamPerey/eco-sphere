@@ -124,5 +124,24 @@ h1 {
   object-fit: cover;
 }
 
+#category-select {
+  display: inline-block;
+  padding: 2px 8px;
+  margin-left: 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+}
+
+.category-general { background-color: #2a9d8f; }
+#category-select biodegradable { background-color: #27ae60; }
+.category-specialWaste { background-color: #f39c12; }
+.category-residual { background-color: #3498db; }
+.category-rants { background-color: #ff7777; }
+.post.completed .task-text {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
 
 

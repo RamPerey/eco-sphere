@@ -9,8 +9,15 @@
 <body>
   <header>
     <div class="logo">EcoSphere</div>
-     <input type="text" placeholder="Search tasks...">
-    <a href="/././index.html" class="back-button">← Back to Your Tasks</a>
+      <select id="category-select" required>
+        <option value="all">All</option>
+        <option value="general">General</option>
+        <option value="biodegradable">Biodegradable</option>
+        <option value="specialWaste">Special Waste</option>
+        <option value="residual">Residual</option>
+        <option value="rants">Rants</option>
+      </select>
+      <a href="/././index.html" class="back-button">← Back to Your Tasks</a>
   </header>
 
   <main class="feed-container">

@@ -3,8 +3,8 @@ fetch('/load-feed')
     .then(data => {
         console.log(data);
         renderFeed(data['result']);
+        filterFeedHandler();
     });
-
         
 function renderFeed(posts) {
     const feedContainer = document.getElementById('feed-posts');
@@ -40,5 +40,17 @@ function renderFeed(posts) {
     });
 }
 
+function filterFeedHandler() {
+    const feedPosts = document.getElementById('feed-posts');
+    const posts = feedPosts.querySelectorAll('.post');
+    console.log(posts);
 
-
+    const categorySelect = document.getElementById('category-select');
+    categorySelect.onchange = () => {
+        console.log(categorySelect.value);
+        posts.forEach(post => {
+            const category = post.querySelector('.category-label').innerText;
+            post.style.display = (category === categorySelect.value || categorySelect.value === 'all') ? '' : 'none';
+        });
+    }
+}
