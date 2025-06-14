@@ -295,7 +295,8 @@ input[type="file"] {
 }
 
 .post .post-image img {
-  max-width: 100%;
+  width: 250px;
+  height: 250px;
   border-radius: 15px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
@@ -411,8 +412,7 @@ input[type="file"] {
 }
 
 .post-images img {
-  width: 100px;
-  height: 100px;
+  width: 250px;
   object-fit: cover;
   border-radius: 15px;
 }

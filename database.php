@@ -106,7 +106,7 @@
         // Content Management
         public function get_newsfeed() {
             $stmt = $this->db->prepare('
-                SELECT username, caption, category, images
+                SELECT username, profile_image, caption, category, images
                 FROM posts
                 JOIN users ON posts.user_id = users.id'
             );

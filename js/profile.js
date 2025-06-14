@@ -28,10 +28,10 @@ form.addEventListener('submit', function (e) {
   const email = document.getElementById('email-input').value.trim();
   const picFile = profilePicInput.files[0];
 
-  // const profileData = {
-  //   name,
-  //   email,
-  // };
+  const profileData = {
+    name,
+    email,
+  };
 
   if (picFile) {
     const reader = new FileReader();
