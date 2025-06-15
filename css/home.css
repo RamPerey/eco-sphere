@@ -38,6 +38,7 @@ header {
 
 .main-container {
   max-width: 1500px;
+  width: 1000px;
   margin: 25px auto;
   padding: 0 15px;
   display: flex;
@@ -296,6 +297,7 @@ input[type="file"] {
   height: 250px;
   border-radius: 15px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  object-fit: cover;
 }
 
 .post-actions {
@@ -437,6 +439,10 @@ input[type="file"] {
   header input[type="text"] {
     width: 100%;
     font-size: 0.95rem;
+  }
+
+  .main-container{
+    width: 400px;
   }
 
 

@@ -193,7 +193,7 @@ input[type="email"]:focus {
 
   input[type="text"],
   input[type="email"] {
-    width: 100%;
+    width: 90%;
     font-size: 0.95rem;
     padding: 8px 12px;
   }

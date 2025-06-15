@@ -21,6 +21,7 @@
 }
 
 .register{
+    width: 450px;
     background: white; 
     backdrop-filter: blur(10px);
     border-radius: 20px;
@@ -138,7 +139,7 @@ a {
 @media (max-width: 480px) {
     .register {
         padding: 1.2rem;
-        max-width: 95%;
+        max-width: 80%;
     }
 
 
@@ -153,7 +154,7 @@ a {
 
 
     input {
-        width: 100%;
+        width: 90%;
         font-size: 0.95rem;
     }
 
