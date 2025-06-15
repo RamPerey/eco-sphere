@@ -5,7 +5,7 @@ fetch('/load-feed')
         renderFeed(data['result']);
     });
 
-
+        
 function renderFeed(posts) {
     const feedContainer = document.getElementById('feed-posts');
     posts.forEach(post => {
@@ -15,8 +15,11 @@ function renderFeed(posts) {
             <div class="poster-name">${post['username']}</div>
             <div class="task-text">${post['caption']}</div>
             <span class="category-label">${post['category']}</span>
-            
+            <div class="post-images">${post['images']}</div>
             `;
         feedContainer.appendChild(el);
     });
 }
+
+
+
