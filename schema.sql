@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS posts (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id  INT NOT NULL,
+    user_id INT NOT NULL,
     caption TEXT,
     images LONGTEXT,
     category TEXT NOT NULL,

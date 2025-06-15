@@ -131,13 +131,15 @@
         }
 
         public function create_post($caption, $images, $category) {
+            $user_id  = $_SESSION['user_id'];
+
             $stmt = $this->db->prepare('
                 INSERT INTO posts (user_id, caption, images, category)
                 VALUES (:user_id, :caption, :images, :category)'
             );
 
             $stmt->execute([
-                'user_id' => $_SESSION['user_id'],
+                'user_id' => $user_id,
                 'caption' => $caption,
                 'images' => json_encode($images),
                 'category' => $category

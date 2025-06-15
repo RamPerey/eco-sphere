@@ -411,6 +411,11 @@ input[type="file"] {
   border-radius: 12px;
 }
 
+.post-images {
+  display: flex;
+  gap: 10px;
+}
+
 .post-images img {
   width: 250px;
   object-fit: cover;
