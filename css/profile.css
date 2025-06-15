@@ -135,3 +135,83 @@ input[type="email"]:focus {
   font-weight: 700;
   text-align: center;
 }
+
+/* Tablet View: 481px to 768px */
+@media (max-width: 768px) {
+  .profile-container {
+    width: 80%;
+    padding: 25px;
+  }
+
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+
+  input[type="text"],
+  input[type="email"] {
+    width: 97%;
+    font-size: 1rem;
+  }
+
+
+  .save-btn {
+    font-size: 1rem;
+  }
+
+
+  .file-label {
+    font-size: 0.85rem;
+  }
+}
+
+
+/* Phone View: 480px and below */
+@media (max-width: 480px) {
+  body {
+    margin: 10px;
+  }
+
+
+  .profile-container {
+    width: 95%;
+    padding: 20px;
+  }
+
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+
+  #profile-pic-preview {
+    width: 100px;
+    height: 100px;
+  }
+
+
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 8px 12px;
+  }
+
+
+  .save-btn {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+
+
+  .file-label {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+
+
+  .back-button {
+    font-size: 0.9rem;
+  }
+}

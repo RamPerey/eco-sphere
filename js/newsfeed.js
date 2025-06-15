@@ -19,7 +19,7 @@ function renderFeed(posts) {
             <div class="poster-name">${post['username']}</div>
             </div>
             <div class="task-text">${post['caption']}</div>
-            <span class="category-label">${post['category']}</span>
+            <span class="category-label category-${post['category']}">${post['category']}</span>
             <div class="post-images"></div>
             `;
         feedContainer.appendChild(el);

@@ -1,3 +1,7 @@
+            body, html {
+              overflow-x: hidden;
+            }
+            
            body {
                 width: 100%;
                 min-height: 100dvh;
@@ -108,17 +112,76 @@
                 color: red;
             }
 
-            @media (max-width: 480px) {
-                .login {
-                    padding: 1.5rem;
-                }
+            /* Tablet View: Up to 768px */
+@media (max-width: 768px) {
+  .main-container {
+    width: 95%;
+    padding: 0 1rem;
+  }
 
-                h1 {
-                    font-size: 1.75rem;
-                }
 
-                input,
-                button {
-                    padding: 0.8rem;
-                }
-            }
+  .login {
+    padding: 2rem;
+  }
+
+
+  h1 {
+    font-size: 2rem;
+  }
+
+
+  h3 {
+    font-size: 1rem;
+  }
+
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+
+  button {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+}
+
+
+/* Improved Mobile View: 480px and below */
+@media (max-width: 480px) {
+  .login {
+    padding: 1.2rem;
+  }
+
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+
+  h3 {
+    font-size: 0.9rem;
+  }
+
+
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+
+
+  button {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.75rem;
+  }
+
+
+  #message {
+    font-size: 0.85rem;
+  }
+}

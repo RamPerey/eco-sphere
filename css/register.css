@@ -1,3 +1,7 @@
+ body, html {
+  overflow-x: hidden;
+}
+
  body {
     width: 100%;
     min-height: 100vh;
@@ -100,28 +104,67 @@ a {
     font-weight: bold;
 }
 
-
-@media (max-width: 480px) {
+/* Tablet view: 481px to 768px */
+@media (max-width: 768px) {
     .register {
-        padding: 1.5rem;
+        padding: 2rem;
+        max-width: 90%;
     }
+
 
     h1 {
-        font-size: 1.75rem;
+        font-size: 2rem;
     }
 
-    input,
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+
+    input {
+        width: 100%;
+        font-size: 1rem;
+    }
+
+
     button {
-        padding: 0.8rem;
+        width: 50%;
     }
-} 
+}
 
-#message {
-    height: 1rem;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    color: red;
+
+/* Enhanced Mobile view: up to 480px */
+@media (max-width: 480px) {
+    .register {
+        padding: 1.2rem;
+        max-width: 95%;
+    }
+
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+
+    h3 {
+        font-size: 1rem;
+    }
+
+
+    input {
+        width: 100%;
+        font-size: 0.95rem;
+    }
+
+
+    button {
+        width: 60%;
+        font-size: 0.95rem;
+    }
+
+
+    label {
+        font-size: 0.9rem;
+    }
 }
