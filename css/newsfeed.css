@@ -134,7 +134,7 @@ h1 {
   color: rgb(0, 0, 0);
 }
 
-.category-general { background-color: #2a9d8f; }
+#category-general { background-color: #2a9d8f; }
 #category-select biodegradable { background-color: #27ae60; }
 .category-specialWaste { background-color: #f39c12; }
 .category-residual { background-color: #3498db; }

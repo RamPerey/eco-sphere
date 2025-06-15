@@ -9,6 +9,7 @@ profilePicInput.addEventListener('change', () => {
 
   if (file) {
     fileNameDisplay.textContent = file.name;
+    
 
     const reader = new FileReader();
     reader.onload = function(e) {
