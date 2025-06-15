@@ -24,7 +24,8 @@ header {
   box-shadow: 0 4px 10px rgb(123 143 103 / 0.4);
 }
 
-#logout-button {
+
+#logout-button{
   background-color: #a0b38c;
   border-radius: 30px;
   padding: 8px 15px;
@@ -46,9 +47,9 @@ header {
 }
 
 aside.sidebar {
-  background: hsl(38, 100%, 96%);
+  background: #fff8ec;
   padding: 25px;
-  width: 30%;
+  width: 400px;
   border-radius: 20px;
   box-shadow: 5px 5px 15px rgba(99, 98, 81, 0.3);
   text-align: center;
@@ -123,12 +124,12 @@ aside.sidebar p {
   font-size: 1.1rem;
 }
 
-.content {
-    width: 60%;
+main.content {
+  flex-grow: 1;
+  min-width: 800px;
 }
 
 .post-form {
-  background-color: #8da259;
   max-width: 100%;
   background: #fefcea;
   padding: 20px 25px;
@@ -220,6 +221,7 @@ input[type="file"] {
 }
 
 .post {
+  max-width: 100%;
   background: #fff8ec;
   padding: 18px 22px;
   margin-bottom: 18px;
@@ -265,6 +267,7 @@ input[type="file"] {
   font-weight: 600;
 }
 
+
 .category-label {
   display: inline-block;
   padding: 2px 8px;
@@ -285,13 +288,7 @@ input[type="file"] {
   opacity: 0.7;
 }
 
-.post-images {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.post .post-images img {
+.post .post-image img {
   width: 250px;
   height: 250px;
   border-radius: 15px;
@@ -328,6 +325,40 @@ input[type="file"] {
   flex-wrap: wrap;
   font-family: 'Georgia', serif;
   color: #536142;
+}
+
+.filter-sort-container label {
+  font-weight: 600;
+  min-width: 50px;
+}
+
+.filter-sort-container input[type="text"],
+.filter-sort-container select {
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 2px solid #a0b38c;
+  font-size: 1rem;
+  font-family: 'Georgia', serif;
+  transition: border-color 0.3s ease;
+  min-width: 170px;
+}
+
+.filter-sort-container input[type="text"]:focus,
+.filter-sort-container select:focus {
+  border-color: #5b6b44;
+  background-color: #e6ebda;
+  outline: none;
+}
+
+@media (max-width: 780px) {
+  .main-container {
+    flex-direction: column;
+    max-width: 95%;
+  }
+  aside.sidebar {
+    width: 100%;
+    margin-bottom: 25px;
+  }
 }
 
 .eco-tip {
@@ -372,6 +403,18 @@ input[type="file"] {
   height: 80px;
   object-fit: cover;
   border-radius: 12px;
+}
+
+.post-images {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.post-images img {
+  width: 250px;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
 /* Tablet View */

@@ -25,6 +25,13 @@ function loadTask() {
 }
 
 function uploadImage(e) {
+    console.log(postImages.length);
+   
+    if (postImages.length === 5) {
+        alert('You can upload a maximum of 5 photos.');
+        return;
+    }
+
     const file = e.target.files[0];
 
     const reader = new FileReader();
@@ -43,23 +50,29 @@ function uploadImage(e) {
 }
 
 const ecoTip = document.getElementById('eco-tip');
-
 function showEcoTip(category) {
     const tips = {
         general: "MAHIYA MGA DI TUMUTULONG SA GROUP 1 JAN!",
         biodegradable: "tubero ka ba? plumbing naman... Garbage separation is important!",
         specialWaste: "Handa akong maging siomai kapag tinotoyo ka... Please our environment clean!",
-        residual: "BE A RESPONSIBLE STUDENT. KALAT MO, TAPON MO!"
+        residual: "BE A RESPONSIBLE STUDENT. KALAT MO, TAPON MO!",
+        rants: "AYAW MO NA AYAW KO NA DEN... Maglinis ng paligid para di mawala ang ating earth"
     };
     ecoTip.textContent = tips[category] || '';
 }
+
+const category = document.getElementById('category-select');
+category.onchange = () => {
+    showEcoTip(category.value);
+} 
+
 
 
 function createPost() {
     const caption = document.getElementById('task-text');
     const category = document.getElementById('category-select');
     const imagePreview = document.getElementById('image-preview');
-    const files = Array.from(photoUploadButton.files); // Ensure this uses the right input
+    // const files = Array.from(photoUploadButton.files); 
 
     const text = caption.value.trim();
     if (!text) {
@@ -67,17 +80,11 @@ function createPost() {
         return;
     }
 
-    if (files.length < 1) {
+    if (postImages.length < 1) {
         alert('BAWAL MADUGA TINGIN KUNG NAGLILINIS TALAGA.');
         return;
     }
 
-    if (files.length > 5) {
-        alert('You can upload a maximum of 5 photos.');
-        return;
-    }
-
-    // Show eco tip based on category
     showEcoTip(category.value);
 
     const postData = {
@@ -105,12 +112,12 @@ function createPost() {
             displayPost(postData);
         });
 
-    // Reset form
+  
     caption.value = '';
     category.value = 'general';
     imagePreview.innerHTML = '';
     postImages = [];
-    photoUploadButton.value = ''; // reset file input
+    photoUploadButton.value = '';
 }
 
 
